@@ -25,7 +25,7 @@ var CircleUI = (function() {
 
 	}
 	
-	function reDraw() {
+	function reDraw( a ) {
 		
 		window.setTimeout(function() {
 			art.className = "fresh";
@@ -40,16 +40,36 @@ var CircleUI = (function() {
 		setElementValue( ac, v );
 
 	}
+	
+	function clearCorrect( a ) {
+
+		if ( a ) {
+
+			var p = a.parentNode.parentNode,
+				chldrn = p.getElementsByTagName( "li" );
+			
+			for (var i = chldrn.length, chld; chld = chldrn[--i];) {
+
+				chld.className = chld.className.replace( " correct", "" );
+
+			}
+
+		}
+
+	}
 
 	LinkListener.addHandler( "hotspot", function( a ) {
 
 		var lpos = a.parentNode.id.replace( /^.*?([0-9]+)$/, "$1" ),
 			lko = Interval.getKeyObjectByPos( lpos );
 		
+		clearCorrect( a );
+		
 		if ( lpos == pos ) {
 
 			art.className = "correct";
 			ce.fireEvent( SCORE_INCREASE, { pos:pos } );
+			a.parentNode.className += " correct";
 
 		} else {
 
@@ -60,7 +80,7 @@ var CircleUI = (function() {
 		}
 	
 		setRandomPosition();
-		reDraw();
+		reDraw( a );
 
 	} );
 

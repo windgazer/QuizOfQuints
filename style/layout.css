@@ -63,6 +63,9 @@ li::before {
 	width: 2em;
 	height: 2em;
 	text-align: center;
+	opacity: 0;
+} li.correct::after {
+	opacity: 1;
 }
 
 li > a:hover {
