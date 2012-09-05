@@ -1,5 +1,6 @@
 body {
 	font-family: 'EB Garamond', Garamond, Georgia, serif;
+	font-size: 120%;
 }
 
 ul {
@@ -57,8 +58,13 @@ li::before {
 	text-indent: 0;
 	text-align: center;
 	line-height: 2em;
+} li::after {
+	position: absolute;
+	width: 2em;
+	height: 2em;
+	text-align: center;
 }
-	
+
 li > a:hover {
 	background: rgba( 64, 64, 255, 0.5 );
 }
@@ -70,11 +76,20 @@ li > a:hover {
 #mark1::before {
 	content: "0";
 }
+#mark1::after {
+	content: "a";
+}
 .pos1::before,
 .pos1 > a {
 	bottom: 0.4em;
 	left: 50%;
-	margin-left: -1.1em;
+	margin-left: -1em;
+}
+.pos1::after {
+	text-align: center;
+	left: 50%;
+	margin-left: -1em;
+	top: 0.5em;
 }
 
 .pos2 {
@@ -84,10 +99,17 @@ li > a:hover {
 #mark2::before {
 	content: "1#";
 }
+#mark2::after {
+	content: "e";
+}
 .pos2::before,
 .pos2 > a {
 	bottom: 0.25em;
 	left: -0.35em;
+}
+.pos2::after {
+	top: 0.25em;
+	right: -0.35em;
 }
 
 .pos3 {
@@ -97,10 +119,17 @@ li > a:hover {
 #mark3::before {
 	content: "2#";
 }
+#mark3::after {
+	content: "b";
+}
 .pos3::before,
 .pos3 > a {
 	bottom: -0.3em;
 	left: 0.2em;
+}
+.pos3::after {
+	top: -0.3em;
+	right: 0.2em;
 }
 
 .pos4 {
@@ -110,11 +139,19 @@ li > a:hover {
 #mark4::before {
 	content: "3#";
 }
+#mark4::after {
+	content: "f#";
+}
 .pos4::before,
 .pos4 > a {
 	top: 50%;
 	left: 0.4em;
 	margin-top: -1.1em;
+}
+.pos4::after {
+	top: 50%;
+	right: 0.4em;
+	margin-top: -0.5em;
 }
 
 .pos5 {
@@ -124,10 +161,17 @@ li > a:hover {
 #mark5::before {
 	content: "4#";
 }
+#mark5::after {
+	content: "c#";
+}
 .pos5::before,
 .pos5 > a {
 	top: -0.3em;
 	left: 0.2em;
+}
+.pos5::after {
+	bottom: -0.3em;
+	right: 0.2em;
 }
 
 .pos6 {
@@ -137,10 +181,17 @@ li > a:hover {
 #mark6::before {
 	content: "5#";
 }
+#mark6::after {
+	content: "g#";
+}
 .pos6::before,
 .pos6 > a {
 	top: 0.25em;
 	left: -0.35em;
+}
+.pos6::after {
+	bottom: 0.25em;
+	right: -0.35em;
 }
 
 .pos7 {
@@ -150,10 +201,18 @@ li > a:hover {
 #mark7::before {
 	content: "6b/#";
 }
+#mark7::after {
+	content: "eb/d#";
+}
 .pos7::before,
 .pos7 > a {
 	top: 0.4em;
 	right: 0;
+	margin-right: -1.1em;
+}
+.pos7::after {
+	bottom: 0.4em;
+	left: -1em;
 	margin-right: -1.1em;
 }
 
@@ -164,10 +223,17 @@ li > a:hover {
 #mark8::before {
 	content: "5b";
 }
+#mark8::after {
+	content: "bb";
+}
 .pos8::before,
 .pos8 > a {
 	top: 0.25em;
 	right: -0.35em;
+}
+.pos8::after {
+	bottom: 0.25em;
+	left: -0.35em;
 }
 
 .pos9 {
@@ -177,10 +243,17 @@ li > a:hover {
 #mark9::before {
 	content: "4b";
 }
+#mark9::after {
+	content: "f";
+}
 .pos9::before,
 .pos9 > a {
 	top: -0.3em;
 	right: 0.2em;
+}
+.pos9::after {
+	bottom: -0.3em;
+	left: 0.2em;
 }
 
 .pos10 {
@@ -190,11 +263,19 @@ li > a:hover {
 #mark10::before {
 	content: "3b";
 }
+#mark10::after {
+	content: "c";
+}
 .pos10::before,
 .pos10 > a {
 	bottom: 0;
 	right: 0.4em;
 	margin-bottom: -1.1em;
+}
+.pos10::after {
+	top: 0;
+	left: 0.4em;
+	margin-top: -1em;
 }
 
 .pos11 {
@@ -204,10 +285,17 @@ li > a:hover {
 #mark11::before {
 	content: "2b";
 }
+#mark11::after {
+	content: "g";
+}
 .pos11::before,
 .pos11 > a {
 	bottom: -0.3em;
 	right: 0.2em;
+}
+.pos11::after {
+	top: -0.3em;
+	left: 0.2em;
 }
 
 .pos12 {
@@ -217,10 +305,17 @@ li > a:hover {
 #mark12::before {
 	content: "1b";
 }
+#mark12::after {
+	content: "d";
+}
 .pos12::before,
 .pos12 > a {
 	bottom: 0.25em;
 	right: -0.35em;
+}
+.pos12::after {
+	top: 0.25em;
+	left: -0.35em;
 }
 
 #question,
