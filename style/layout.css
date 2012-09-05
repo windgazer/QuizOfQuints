@@ -1,3 +1,7 @@
+body {
+	font-family: 'EB Garamond', Garamond, Georgia, serif;
+}
+
 ul {
 	padding: 0;
 	margin: 0 auto;
@@ -278,4 +282,53 @@ li > a:hover {
 .incorrect > #redraw {
 	border-color: rgba( 255, 64, 64, 0.75 );
 	background-color: rgba( 255, 64, 64, 0.5 );
+}
+
+
+.score {
+
+    padding: 1em;
+    margin: -2em auto 0;
+    border: 0.1em solid black;
+    border-radius: 0.2em;
+    font-weight: bold;
+
+	width: 2ex;
+	text-align: center;
+	position: relative;
+	left: 11em;
+
+    background: black;
+    color: white;
+    text-shadow: 0 0 0 rgba( 255, 255, 255, 0), 0 0 0 rgba( 255, 255, 48, 0), 0 0 0 rgba( 255, 221, 48, 0), 0 0 0 rgba( 255, 136, 0, 0), 0 0 0 rgba( 255, 34, 0, 0);
+    -webkit-transition: all 5s ease-in-out;
+
+}
+
+.hot {
+    color: rgba( 255, 0, 0, 0.75 );
+    text-shadow: 0 0 0.4em white, 0 -0.5em 0.4em #ff3, 0.2em -1em 0.6em #fd3, -0.2em -1.5em 1.1em #f80, 0.2em -2.5em 1.8em #f20;
+}
+
+
+.hot0 {
+    text-shadow: 0 0 0 rgba( 255, 255, 255, 0), 0 0 0 rgba( 255, 255, 48, 0), 0 0 0 rgba( 255, 221, 48, 0), 0 0 0 rgba( 255, 136, 0, 0), 0.2em -2.5em 1.8em rgba( 255, 34, 0, 1);
+}
+
+.hot1 {
+    text-shadow: 0 0 0 rgba( 255, 255, 255, 0), 0 0 0 rgba( 255, 255, 48, 0), 0 0 0 rgba( 255, 221, 48, 0), -0.2em -1.5em 1.1em rgba( 255, 136, 0, 1), 0.2em -2.5em 1.8em rgba( 255, 34, 0, 1);
+}
+
+.hot2 {
+    text-shadow: 0 0 0 rgba( 255, 255, 255, 0), 0 0 0 rgba( 255, 255, 48, 0), 0.2em -1em 0.6em rgba( 255, 221, 48, 1), -0.2em -1.5em 1.1em rgba( 255, 136, 0, 1), 0.2em -2.5em 1.8em rgba( 255, 34, 0, 1);
+}
+
+.hot3 {
+    color: rgba( 255, 0, 0, 0.75 );
+    text-shadow: 0 0 0 rgba( 255, 255, 255, 0), 0 -0.5em 0.4em rgba( 255, 255, 48, 1), 0.2em -1em 0.6em rgba( 255, 221, 48, 1), -0.2em -1.5em 1.1em rgba( 255, 136, 0, 1), 0.2em -2.5em 1.8em rgba( 255, 34, 0, 1);
+}
+
+.hot4 {
+    color: rgba( 255, 0, 0, 0.75 );
+    text-shadow: 0 0 0.4em rgba( 255, 255, 255, 1), 0 -0.5em 0.4em rgba( 255, 255, 48, 1), 0.2em -1em 0.6em rgba( 255, 221, 48, 1), -0.2em -1.5em 1.1em rgba( 255, 136, 0, 1), 0.2em -2.5em 1.8em rgba( 255, 34, 0, 1);
 }

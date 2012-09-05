@@ -49,11 +49,13 @@ var CircleUI = (function() {
 		if ( lpos == pos ) {
 
 			art.className = "correct";
+			ce.fireEvent( SCORE_INCREASE, { pos:pos } );
 
 		} else {
 
 			art.className = "incorrect";
 			setCorrection(  ko.value );
+			ce.fireEvent( SCORE_FAIL, { pos:pos, actual: ko } );
 
 		}
 	
