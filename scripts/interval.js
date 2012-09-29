@@ -22,6 +22,24 @@ var Interval = (function() {
 
 	);
 
+	var major2minor = new Array(
+
+		{ key:"C",  value:"a",  pos:1  },
+		{ key:"G",  value:"e",  pos:2  },
+		{ key:"D",  value:"b",  pos:3  },
+		{ key:"A",  value:"f#", pos:4  },
+		{ key:"E",  value:"c#", pos:5  },
+		{ key:"B",  value:"g#", pos:6  },
+		{ key:"F#", value:"d#", pos:7  },
+		{ key:"Gb", value:"eb", pos:7  },
+		{ key:"Db", value:"bb", pos:8  },
+		{ key:"Ab", value:"f",  pos:9  },
+		{ key:"Eb", value:"c",  pos:10 },
+		{ key:"Bb", value:"g",  pos:11 },
+		{ key:"F",  value:"d",  pos:12 }
+
+	);
+
 	function getObjectByFieldValue( value, fieldname ) {
 
 		for ( var i = 0; i < key2signature.length; i++ ) {
