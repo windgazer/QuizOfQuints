@@ -41,6 +41,10 @@ li {
 	margin: -0.25em;
 }
 
+/**
+ * Positioning of the click-spots.
+ */
+
 li > a,
 li::before {
 	position: absolute;
@@ -73,12 +77,6 @@ li > a:hover {
 	top: 0;
 	left: 50%;
 }
-#mark1::before {
-	content: "0";
-}
-#mark1::after {
-	content: "a";
-}
 .pos1::before,
 .pos1 > a {
 	bottom: 0.4em;
@@ -96,12 +94,6 @@ li > a:hover {
 	top: 1.25em;
 	right: 5em;
 }
-#mark2::before {
-	content: "1#";
-}
-#mark2::after {
-	content: "e";
-}
 .pos2::before,
 .pos2 > a {
 	bottom: 0.25em;
@@ -116,12 +108,6 @@ li > a:hover {
 	top: 5em;
 	right: 1.25em;
 }
-#mark3::before {
-	content: "2#";
-}
-#mark3::after {
-	content: "b";
-}
 .pos3::before,
 .pos3 > a {
 	bottom: -0.3em;
@@ -135,12 +121,6 @@ li > a:hover {
 .pos4 {
 	top: 50%;
 	right: 0;
-}
-#mark4::before {
-	content: "3#";
-}
-#mark4::after {
-	content: "f#";
 }
 .pos4::before,
 .pos4 > a {
@@ -158,12 +138,6 @@ li > a:hover {
 	bottom: 5em;
 	right: 1.25em;
 }
-#mark5::before {
-	content: "4#";
-}
-#mark5::after {
-	content: "c#";
-}
 .pos5::before,
 .pos5 > a {
 	top: -0.3em;
@@ -178,12 +152,6 @@ li > a:hover {
 	bottom: 1.25em;
 	right: 5em;
 }
-#mark6::before {
-	content: "5#";
-}
-#mark6::after {
-	content: "g#";
-}
 .pos6::before,
 .pos6 > a {
 	top: 0.25em;
@@ -197,12 +165,6 @@ li > a:hover {
 .pos7 {
 	bottom: 0;
 	right: 50%;
-}
-#mark7::before {
-	content: "6b/#";
-}
-#mark7::after {
-	content: "eb/d#";
 }
 .pos7::before,
 .pos7 > a {
@@ -220,12 +182,6 @@ li > a:hover {
 	left: 5em;
 	bottom: 1.25em;
 }
-#mark8::before {
-	content: "5b";
-}
-#mark8::after {
-	content: "bb";
-}
 .pos8::before,
 .pos8 > a {
 	top: 0.25em;
@@ -240,12 +196,6 @@ li > a:hover {
 	left: 1.25em;
 	bottom: 5em;
 }
-#mark9::before {
-	content: "4b";
-}
-#mark9::after {
-	content: "f";
-}
 .pos9::before,
 .pos9 > a {
 	top: -0.3em;
@@ -259,12 +209,6 @@ li > a:hover {
 .pos10 {
 	top: 50%;
 	left: 0;
-}
-#mark10::before {
-	content: "3b";
-}
-#mark10::after {
-	content: "c";
 }
 .pos10::before,
 .pos10 > a {
@@ -282,12 +226,6 @@ li > a:hover {
 	top: 5em;
 	left: 1.25em;
 }
-#mark11::before {
-	content: "2b";
-}
-#mark11::after {
-	content: "g";
-}
 .pos11::before,
 .pos11 > a {
 	bottom: -0.3em;
@@ -302,12 +240,6 @@ li > a:hover {
 	top: 1.25em;
 	left: 5em;
 }
-#mark12::before {
-	content: "1b";
-}
-#mark12::after {
-	content: "d";
-}
 .pos12::before,
 .pos12 > a {
 	bottom: 0.25em;
@@ -318,7 +250,99 @@ li > a:hover {
 	left: -0.35em;
 }
 
-#question,
+/**
+ * Hot-spot content
+ */
+
+#mark1::before {
+	content: "0";
+}
+#mark1::after {
+	content: "a";
+}
+
+#mark2::before {
+	content: "1#";
+}
+#mark2::after {
+	content: "e";
+}
+
+#mark3::before {
+	content: "2#";
+}
+#mark3::after {
+	content: "b";
+}
+
+#mark4::before {
+	content: "3#";
+}
+#mark4::after {
+	content: "f#";
+}
+
+#mark5::before {
+	content: "4#";
+}
+#mark5::after {
+	content: "c#";
+}
+
+#mark6::before {
+	content: "5#";
+}
+#mark6::after {
+	content: "g#";
+}
+
+#mark7::before {
+	content: "6b/#";
+}
+#mark7::after {
+	content: "eb/d#";
+}
+
+#mark8::before {
+	content: "5b";
+}
+#mark8::after {
+	content: "bb";
+}
+
+#mark9::before {
+	content: "4b";
+}
+#mark9::after {
+	content: "f";
+}
+
+#mark10::before {
+	content: "3b";
+}
+#mark10::after {
+	content: "c";
+}
+
+#mark11::before {
+	content: "2b";
+}
+#mark11::after {
+	content: "g";
+}
+
+#mark12::before {
+	content: "1b";
+}
+#mark12::after {
+	content: "d";
+}
+
+/**
+ * End of hot-spots
+ */
+
+#Question,
 #redraw,
 #answer,
 #correction {
