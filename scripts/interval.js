@@ -4,7 +4,7 @@ var Interval = (function() {
 	 * All musical keys, in order of the quintcirkel.
 	 * The 'pos' attribute denotes the position on the quintcirkel in clockwise direction.
 	 */
-	var keys = new Array(
+	var key2signature = new Array(
 
 		{ key:"C",  value:"0",  pos:1  },
 		{ key:"G",  value:"1#", pos:2  },
@@ -24,9 +24,9 @@ var Interval = (function() {
 
 	function getObjectByFieldValue( value, fieldname ) {
 
-		for ( var i = 0; i < keys.length; i++ ) {
+		for ( var i = 0; i < key2signature.length; i++ ) {
 
-			var k = keys[i];
+			var k = key2signature[i];
 			
 			if ( k[fieldname] === value ) return k;
 
@@ -68,7 +68,7 @@ var Interval = (function() {
 
 	return {
 		
-		keys: keys,
+		key2signature: key2signature,
 
 		getKeyByValue: getKeyByValue,
 		
