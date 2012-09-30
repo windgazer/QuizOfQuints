@@ -27,13 +27,17 @@ var Interval = (function() {
 
 	function getObjectByFieldValue( value, fieldname ) {
 
+	    var kn = new Array();
+
 		for ( var i = 0; i < keys.length; i++ ) {
 
 			var k = keys[i];
 			
-			if ( k[fieldname] === value ) return k;
+			if ( k[fieldname] === value ) kn.push( k );
 
 		}
+
+	    return kn.length === 1 ? kn[0] : kn;
 
 	}
 
@@ -91,12 +95,25 @@ var Interval = (function() {
 
     function createStyleSheets() {
 
-	var i = 0, str = '';
+	var i = 1, str = '',
+	    l1 = 'sig', l2 = 'minor';
 
-	for ( ; i < keys.length; i++ ) {
+	for ( ; i < 13; i++ ) {
 
-	    var k = keys[i];
-	    str += parseTemplate( template, { pos:k.pos, v1:k.sig, v2:k.minor } );
+	    var kn = getKeyObjectByPos( i ), v1 = '', v2 = '';
+	    if ( !kn.hasOwnProperty("length") ) {
+		kn = [ kn ];
+	    }
+	    for (var j = 0; j < kn.length; j++) {
+		var k = kn[ j ];
+		if ( j > 0) {
+		    v1 += '/';
+		    v2 += '/';
+		}
+		v1 += k[ l1 ];
+		v2 += k[ l2 ];
+	    }
+	    str += parseTemplate( template, { pos:kn[0].pos, v1:v1, v2:v2 } );
 
 	}
 
