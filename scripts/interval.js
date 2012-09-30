@@ -1,50 +1,35 @@
 var Interval = (function() {
 
+    var tre = /`([^`]+)`/gi,
+        template = "#mark`pos`::before { content: \"`v1`\"; } #mark`pos`::after { content: \"`v2`\"; }";
+
 	/**
 	 * All musical keys, in order of the quintcirkel.
 	 * The 'pos' attribute denotes the position on the quintcirkel in clockwise direction.
 	 */
-	var key2signature = new Array(
+	var keys = new Array(
 
-		{ key:"C",  value:"0",  pos:1  },
-		{ key:"G",  value:"1#", pos:2  },
-		{ key:"D",  value:"2#", pos:3  },
-		{ key:"A",  value:"3#", pos:4  },
-		{ key:"E",  value:"4#", pos:5  },
-		{ key:"B",  value:"5#", pos:6  },
-		{ key:"F#", value:"6#", pos:7  },
-		{ key:"Gb", value:"6b", pos:7  },
-		{ key:"Db", value:"5b", pos:8  },
-		{ key:"Ab", value:"4b", pos:9  },
-		{ key:"Eb", value:"3b", pos:10 },
-		{ key:"Bb", value:"2b", pos:11 },
-		{ key:"F",  value:"1b", pos:12 }
-
-	);
-
-	var major2minor = new Array(
-
-		{ key:"C",  value:"a",  sig:"0",  pos:1  },
-		{ key:"G",  value:"e",  sig:"1#", pos:2  },
-		{ key:"D",  value:"b",  sig:"2#", pos:3  },
-		{ key:"A",  value:"f#", sig:"3#", pos:4  },
-		{ key:"E",  value:"c#", sig:"4#", pos:5  },
-		{ key:"B",  value:"g#", sig:"5#", pos:6  },
-		{ key:"F#", value:"d#", sig:"6#", pos:7  },
-		{ key:"Gb", value:"eb", sig:"6b", pos:7  },
-		{ key:"Db", value:"bb", sig:"5b", pos:8  },
-		{ key:"Ab", value:"f",  sig:"4b", pos:9  },
-		{ key:"Eb", value:"c",  sig:"3b", pos:10 },
-		{ key:"Bb", value:"g",  sig:"2b", pos:11 },
-		{ key:"F",  value:"d",  sig:"1b", pos:12 }
+		{ key:"C",  minor:"a",  sig:"0",  pos:1  },
+		{ key:"G",  minor:"e",  sig:"1#", pos:2  },
+		{ key:"D",  minor:"b",  sig:"2#", pos:3  },
+		{ key:"A",  minor:"f#", sig:"3#", pos:4  },
+		{ key:"E",  minor:"c#", sig:"4#", pos:5  },
+		{ key:"B",  minor:"g#", sig:"5#", pos:6  },
+		{ key:"F#", minor:"d#", sig:"6#", pos:7  },
+		{ key:"Gb", minor:"eb", sig:"6b", pos:7  },
+		{ key:"Db", minor:"bb", sig:"5b", pos:8  },
+		{ key:"Ab", minor:"f",  sig:"4b", pos:9  },
+		{ key:"Eb", minor:"c",  sig:"3b", pos:10 },
+		{ key:"Bb", minor:"g",  sig:"2b", pos:11 },
+		{ key:"F",  minor:"d",  sig:"1b", pos:12 }
 
 	);
 
 	function getObjectByFieldValue( value, fieldname ) {
 
-		for ( var i = 0; i < key2signature.length; i++ ) {
+		for ( var i = 0; i < keys.length; i++ ) {
 
-			var k = key2signature[i];
+			var k = keys[i];
 			
 			if ( k[fieldname] === value ) return k;
 
@@ -59,7 +44,7 @@ var Interval = (function() {
 	 */
 	function getKeyByValue( value ) {
 
-		return getObjectByFieldValue( value, "value" );
+		return getValueBySignature( value );
 
 	};
 
@@ -82,7 +67,7 @@ var Interval = (function() {
 
 		return getObjectByFieldValue( parseInt( position, 10 ), "pos" );
 
-	}
+	};
 
 	function getValueBySignature( sig ) {
 
@@ -90,16 +75,54 @@ var Interval = (function() {
 
 	};
 
+	function parseTemplate( template, values ) {
+
+	    var split = template.split(tre),
+	        max = split.length, str = '', index = 0;
+
+	    for (; index < max; index++) {
+		str += split[index];
+		str += values[split[++index]] || '';
+	    }
+
+	    return str;
+
+	};
+
+    function createStyleSheets() {
+
+	var i = 0, str = '';
+
+	for ( ; i < keys.length; i++ ) {
+
+	    var k = keys[i];
+	    str += parseTemplate( template, { pos:k.pos, v1:k.sig, v2:k.minor } );
+
+	}
+
+	var ss = document.createElement("style");
+	ss.appendChild(document.createTextNode(str));
+
+	document.getElementsByTagName("head")[0].appendChild(ss);
+
+	return str;
+
+    };
+
+    createStyleSheets();
+
 	return {
 		
-		key2signature: key2signature,
+		keys: keys,
 
 		getKeyByValue: getKeyByValue,
 		
 		getValueByKey: getValueByKey,
 		
-		getKeyObjectByPos: getKeyObjectByPos
+		getKeyObjectByPos: getKeyObjectByPos,
 
-	}
+		createStyleSheets:createStyleSheets
+
+	};
 	
 })();
