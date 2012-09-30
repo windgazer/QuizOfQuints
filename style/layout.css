@@ -338,11 +338,95 @@ li > a:hover {
 	content: "d";
 }
 
+.majorMinor > #mark1::before {
+	content: "C";
+}
+.majorMinor > #mark1::after {
+	content: "a";
+}
+
+.majorMinor > #mark2::before {
+	content: "G";
+}
+.majorMinor > #mark2::after {
+	content: "e";
+}
+
+.majorMinor > #mark3::before {
+	content: "D";
+}
+.majorMinor > #mark3::after {
+	content: "b";
+}
+
+.majorMinor > #mark4::before {
+	content: "A";
+}
+.majorMinor > #mark4::after {
+	content: "f#";
+}
+
+.majorMinor > #mark5::before {
+	content: "E";
+}
+.majorMinor > #mark5::after {
+	content: "c#";
+}
+
+.majorMinor > #mark6::before {
+	content: "B";
+}
+.majorMinor > #mark6::after {
+	content: "g#";
+}
+
+.majorMinor > #mark7::before {
+	content: "Gb/F#";
+}
+.majorMinor > #mark7::after {
+	content: "eb/d#";
+}
+
+.majorMinor > #mark8::before {
+	content: "Db";
+}
+.majorMinor > #mark8::after {
+	content: "bb";
+}
+
+.majorMinor > #mark9::before {
+	content: "Ab";
+}
+.majorMinor > #mark9::after {
+	content: "f";
+}
+
+.majorMinor > #mark10::before {
+	content: "Eb";
+}
+.majorMinor > #mark10::after {
+	content: "c";
+}
+
+.majorMinor > #mark11::before {
+	content: "Bb";
+}
+.majorMinor > #mark11::after {
+	content: "g";
+}
+
+.majorMinor > #mark12::before {
+	content: "F";
+}
+.majorMinor > #mark12::after {
+	content: "d";
+}
+
 /**
  * End of hot-spots
- */
+ **/
 
-#Question,
+#question,
 #redraw,
 #answer,
 #correction {

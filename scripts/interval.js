@@ -40,6 +40,24 @@ var Interval = (function() {
 
 	);
 
+	var minor2signature = new Array(
+
+		{ key:"a",  value:"0",  pos:1  },
+		{ key:"e",  value:"1#", pos:2  },
+		{ key:"b",  value:"2#", pos:3  },
+		{ key:"f#", value:"3#", pos:4  },
+		{ key:"c#", value:"4#", pos:5  },
+		{ key:"g#", value:"5#", pos:6  },
+		{ key:"d#", value:"6#", pos:7  },
+		{ key:"eb", value:"6b", pos:7  },
+		{ key:"bb", value:"5b", pos:8  },
+		{ key:"f",  value:"4b", pos:9  },
+		{ key:"c",  value:"3b", pos:10 },
+		{ key:"g",  value:"2b", pos:11 },
+		{ key:"d",  value:"1b", pos:12 }
+
+	);
+
 	function getObjectByFieldValue( value, fieldname ) {
 
 		for ( var i = 0; i < key2signature.length; i++ ) {
