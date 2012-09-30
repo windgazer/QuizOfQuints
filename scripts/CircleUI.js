@@ -8,8 +8,10 @@ var CircleUI = (function() {
 		
 	function setRandomPosition() {
 
-		pos = Math.round( Math.random() * 11 ) + 1,
-		ko = Interval.getKeyObjectByPos( pos );
+		var npos = pos;
+		while ( npos === pos ) npos = Math.round( Math.random() * 11 ) + 1;
+		pos = npos;
+		ko = Interval.getKeyObjectByPos( pos )[ 0 ];
 
 	}
 	
