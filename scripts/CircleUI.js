@@ -44,7 +44,7 @@ var CircleUI = (function() {
 	LinkListener.addHandler( "hotspot", function( a ) {
 
 		var lpos = a.parentNode.id.replace( /^.*?([0-9]+)$/, "$1" ),
-			lko = Interval.getKeyObjectByPos( lpos );
+			lko = Interval.getKeyObjectByPos( lpos )[ 0 ];
 		
 		if ( lpos == pos ) {
 
@@ -54,7 +54,7 @@ var CircleUI = (function() {
 		} else {
 
 			art.className = "incorrect";
-			setCorrection(  ko.value );
+			setCorrection(  ko.sig );
 			ce.fireEvent( SCORE_FAIL, { pos:pos, actual: ko } );
 
 		}

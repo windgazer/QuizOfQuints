@@ -37,7 +37,7 @@ var Interval = (function() {
 
 		}
 
-	    return kn.length === 1 ? kn[0] : kn;
+	    return kn;
 
 	}
 
@@ -59,7 +59,7 @@ var Interval = (function() {
 	 */
 	function getValueByKey(  ) {
 
-		return getObjectByFieldValue( value, "key" );
+		return getObjectByFieldValue( value, "key" )[0];
 
 	};
 
@@ -73,9 +73,15 @@ var Interval = (function() {
 
 	};
 
+	function getValueByMinor( minor ) {
+
+		return getObjectByFieldValue( minor, "minor" )[0];
+
+	};
+
 	function getValueBySignature( sig ) {
 
-		return getObjectByFieldValue( sig, "sig" );
+		return getObjectByFieldValue( sig, "sig" )[0];
 
 	};
 
@@ -96,7 +102,7 @@ var Interval = (function() {
     function createStyleSheets() {
 
 	var i = 1, str = '',
-	    l1 = 'sig', l2 = 'minor';
+	    l1 = 'key', l2 = 'minor';
 
 	for ( ; i < 13; i++ ) {
 
