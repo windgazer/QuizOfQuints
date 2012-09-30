@@ -9,8 +9,8 @@ ul {
 	list-style: none;
 	
 	position: relative;
-	width: 20em;
-	height: 20em;
+	width: 15em;
+	height: 15em;
 	background: silver;
 	
 	border-radius: 10em;
@@ -48,25 +48,27 @@ li {
 li > a,
 li::before {
 	position: absolute;
-	width: 2em;
-	height: 2em;
+	width: 2.5em;
+	height: 2.5em;
 	
 	border: 0.1em solid rgba( 64, 64, 255, 0.75 );
 	border-radius: 2em;
 	text-decoration: none;
 	text-indent: -10em;
 	overflow: hidden;
+font-size: 125%;
 	
 	background: rgba( 64, 64, 255, 0.25 );
 } li::before {
 	text-indent: 0;
 	text-align: center;
-	line-height: 2em;
+	line-height: 2.5em;
 } li::after {
 	position: absolute;
-	width: 2em;
-	height: 2em;
+	width: 2.5em;
+	height: 2.5em;
 	text-align: center;
+font-size: 125%;
 }
 
 li > a:hover {
@@ -81,18 +83,18 @@ li > a:hover {
 .pos1 > a {
 	bottom: 0.4em;
 	left: 50%;
-	margin-left: -1em;
+	margin-left: -1.35em;
 }
 .pos1::after {
 	text-align: center;
 	left: 50%;
-	margin-left: -1em;
+	margin-left: -1.1em;
 	top: 0.5em;
 }
 
 .pos2 {
-	top: 1.25em;
-	right: 5em;
+	top: 0.9em;
+	right: 3.8em;
 }
 .pos2::before,
 .pos2 > a {
@@ -101,12 +103,12 @@ li > a:hover {
 }
 .pos2::after {
 	top: 0.25em;
-	right: -0.35em;
+	right: -0.45em;
 }
 
 .pos3 {
-	top: 5em;
-	right: 1.25em;
+	top: 3.8em;
+	right: 0.9em;
 }
 .pos3::before,
 .pos3 > a {
@@ -114,8 +116,8 @@ li > a:hover {
 	left: 0.2em;
 }
 .pos3::after {
-	top: -0.3em;
-	right: 0.2em;
+	top: -0.1em;
+	right: 0.1em;
 }
 
 .pos4 {
@@ -126,17 +128,17 @@ li > a:hover {
 .pos4 > a {
 	top: 50%;
 	left: 0.4em;
-	margin-top: -1.1em;
+	margin-top: -1.35em;
 }
 .pos4::after {
 	top: 50%;
-	right: 0.4em;
+	right: 0em;
 	margin-top: -0.5em;
 }
 
 .pos5 {
-	bottom: 5em;
-	right: 1.25em;
+	bottom: 3.8em;
+	right: 0.9em;
 }
 .pos5::before,
 .pos5 > a {
@@ -144,22 +146,22 @@ li > a:hover {
 	left: 0.2em;
 }
 .pos5::after {
-	bottom: -0.3em;
-	right: 0.2em;
+	bottom: -1.1em;
+	right: -0.2em;
 }
 
 .pos6 {
-	bottom: 1.25em;
-	right: 5em;
+	bottom: 0.9em;
+	right: 3.8em;
 }
 .pos6::before,
 .pos6 > a {
-	top: 0.25em;
+	top: 0.2em;
 	left: -0.35em;
 }
 .pos6::after {
-	bottom: 0.25em;
-	right: -0.35em;
+	bottom: -0.4em;
+	right: -0.7em;
 }
 
 .pos7 {
@@ -170,17 +172,17 @@ li > a:hover {
 .pos7 > a {
 	top: 0.4em;
 	right: 0;
-	margin-right: -1.1em;
+	margin-right: -1.35em;
 }
 .pos7::after {
-	bottom: 0.4em;
+	bottom: -0.2em;
 	left: -1em;
 	margin-right: -1.1em;
 }
 
 .pos8 {
-	left: 5em;
-	bottom: 1.25em;
+	left: 3.8em;
+	bottom: 0.9em;
 }
 .pos8::before,
 .pos8 > a {
@@ -188,13 +190,13 @@ li > a:hover {
 	right: -0.35em;
 }
 .pos8::after {
-	bottom: 0.25em;
-	left: -0.35em;
+	bottom: -0.5em;
+	left: -0.7em;
 }
 
 .pos9 {
-	left: 1.25em;
-	bottom: 5em;
+	left: 0.9em;
+	bottom: 3.8em;
 }
 .pos9::before,
 .pos9 > a {
@@ -202,8 +204,8 @@ li > a:hover {
 	right: 0.2em;
 }
 .pos9::after {
-	bottom: -0.3em;
-	left: 0.2em;
+	bottom: -1.1em;
+	left: -0.2em;
 }
 
 .pos10 {
@@ -214,17 +216,17 @@ li > a:hover {
 .pos10 > a {
 	bottom: 0;
 	right: 0.4em;
-	margin-bottom: -1.1em;
+	margin-bottom: -1.35em;
 }
 .pos10::after {
 	top: 0;
-	left: 0.4em;
+	left: 0em;
 	margin-top: -1em;
 }
 
 .pos11 {
-	top: 5em;
-	left: 1.25em;
+	top: 3.8em;
+	left: 0.9em;
 }
 .pos11::before,
 .pos11 > a {
@@ -237,8 +239,8 @@ li > a:hover {
 }
 
 .pos12 {
-	top: 1.25em;
-	left: 5em;
+	top: 0.9em;
+	left: 3.8em;
 }
 .pos12::before,
 .pos12 > a {
@@ -342,22 +344,22 @@ li > a:hover {
  * End of hot-spots
  */
 
-#Question,
+#question,
 #redraw,
 #answer,
 #correction {
 	display: block;
 	position: relative;
 	text-align: center;
-	width: 10em;
+	width: 7em;
 	margin: 0 auto;
-	top: -10.5em;
+	top: -9em;
 }
 
 #question {
 	font-size: 2em;
 	margin-top: -0.5em;
-	top: -5em;
+	top: -4.5em;
 }
 
 .correct > #question {
