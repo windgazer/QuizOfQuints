@@ -1,100 +1,133 @@
-describe( "ImageCache", function( ) {
+describe( "SoundLib", function( ) {
 	
 	beforeEach( function( ) {
 	
 	});
+    
+    it ( "Should return the steps to a specific note", function(  ) {
+
+        var steps = SoundLib.A[4];
+
+        expect( steps ).toEqual( 50 );
+
+        steps = SoundLib.A[9];
+
+        expect( steps ).toEqual( null );
+
+        steps = SoundLib.C[0];
+
+        expect( steps ).toEqual( 5 );
+
+        steps = SoundLib.G[2];
+
+        expect( steps ).toEqual( 36 );
+
+    });
+    
+    it ( "Should return the frequency to a specific step", function(  ) {
+
+        var freq = SoundLib.calculateFrequency( SoundLib.A[4] );
+        
+        expect( freq ).toEqual( 440 );
+        
+        freq = SoundLib.calculateFrequency( SoundLib.A[0] );
+        
+        expect( Math.round( freq ) ).toEqual( 28 );
+        
+        freq = SoundLib.calculateFrequency( SoundLib.G[2] );
+        
+        expect( Math.round( freq ) ).toEqual( 196 );
+        
+        freq = SoundLib.calculateFrequency( SoundLib.Bb[6] );
+        
+        expect( Math.round( freq ) ).toEqual( 1865 );
+
+    });
+
+    it ( "Should be able to return a 'note'", function(  ) {
+    
+        var note = SoundLib.createNote( SoundLib.A[4] );
+        
+        expect( typeof note ).toEqual( "object" );
+        expect( note.length ).toEqual( 1 );
+        expect( note[0].frequency.value ).toEqual( 440 );
+    
+    });
+
+    it ( "Should be able to add a 'note'", function(  ) {
+    
+        var note = SoundLib.createNote( SoundLib.A[4] );
+        SoundLib.addNote( note, SoundLib.A[4] + 4 );
+        
+        expect( typeof note ).toEqual( "object" );
+        expect( note.length ).toEqual( 2 );
+        expect( note[0].frequency.value ).toEqual( 440 );
+        expect( Math.round( note[1].frequency.value ) ).toEqual( 554 );
+    
+    });
+
+    it ( "Should be able to create a 'chord'", function(  ) {
+    
+        var note = SoundLib.createChord( SoundLib.A[4] );
+        
+        expect( typeof note ).toEqual( "object" );
+        expect( note.length ).toEqual( 3 );
+    
+    });
 
     describe( "Can start/stop sound", function(  ) {
+    
+        beforeEach( function(  ) {
+
+            spyOn( console, 'debug' ).andCallThrough(  );
+
+        });
 
         var oscillators = null;
         
         it ( "Should be able to start a sound", function(  ) {
 
-            oscillators = SoundLib.play( 440 );
-            
-            expect( typeof oscillators ).toEqual( "object" );
-            expect( oscillators.length ).toEqual( 1 );
+            oscillators = SoundLib.createNote( SoundLib.A[4] );
+            spyOn( oscillators[0], 'noteOn' );
+            SoundLib.play( oscillators );
+            expect( oscillators[0].noteOn ).toHaveBeenCalled( );
+            expect( console.debug ).toHaveBeenCalledWith( "Starting an Oscillator at frequency: 440" );
             
         });
         
         it ( "Should be able to stop a sound", function(  ) {
 
+            var n = oscillators[0];
+            spyOn( n, 'noteOff' );
             SoundLib.stop( oscillators );
-
+            expect( n.noteOff ).toHaveBeenCalled( );
             expect( oscillators.length ).toEqual( 0 );
+            expect( console.debug ).toHaveBeenCalledWith( "Stopping an Oscillator at frequency: 440" );
 
         });
         
+        it ( "Should be able to start a chord", function(  ) {
+
+            oscillators = SoundLib.createChord( SoundLib.C[4] );
+            var n = oscillators[0];
+            spyOn( n, 'noteOn' );
+            SoundLib.play( oscillators );
+            expect( n.noteOn ).toHaveBeenCalled( );
+            expect( console.debug ).toHaveBeenCalled( );
+            
+        });
         
+        it ( "Should be able to stop a chord", function(  ) {
+
+            var n = oscillators[0];
+            spyOn( n, 'noteOff' );
+            SoundLib.stop( oscillators );
+            expect( n.noteOff ).toHaveBeenCalled( );
+            expect( oscillators.length ).toEqual( 0 );
+            expect( console.debug ).toHaveBeenCalled( );
+
+        });
 
     });
-
-	describe( "Asynchronous specs", function( ) {
-		
-		var flag = false,
-			data = null;
-
-		beforeEach( function( ) {
-
-			flag = false;
-			data = null;
-
-		});
-
-		it( "should throw a custom-event when the image is finished loading", function( ){
-
-			var uid = null;
-
-			runs( function( ) {
-				uid = ImageCache.loadImage( "./dodo.jpg" );
-			});
-
-			ce.attachEvent( ImageCache.EVENT_FINISHED, function( id, rdata ) {
-
-				flag = true;
-				data = rdata;
-				return data;
-
-			});
-
-			waitsFor( function(){return flag}, "An event should cause the flag to be set to true!", 1000 );
-			
-			runs( function( ) {
-
-				expect( ImageCache.getStatus( uid ) ).toBe( ImageCache.STATUS_FINISHED );
-				expect( data ).toNotEqual( null );
-
-			});
-
-		});
-
-		it( "should throw a custom-event when the image is fails to load", function( ){
-
-			var uid = null;
-
-			runs( function( ) {
-				uid = ImageCache.loadImage( "./dodo2.jpg" );
-			});
-
-			ce.attachEvent( ImageCache.EVENT_FAILED, function( id, rdata ) {
-
-				flag = true;
-				data = rdata;
-				return data;
-
-			});
-
-			waitsFor( function(){return flag}, "An event should cause the flag to be set to true!", 1000 );
-			
-			runs( function( ) {
-
-				expect( ImageCache.getStatus( uid ) ).toBe( ImageCache.STATUS_FAILED );
-				expect( data ).toNotEqual( null );
-
-			});
-
-		});
-
-	});
 
 });
