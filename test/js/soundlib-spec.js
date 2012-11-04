@@ -76,12 +76,6 @@ describe( "SoundLib", function( ) {
     });
 
     describe( "Can start/stop sound", function(  ) {
-    
-        beforeEach( function(  ) {
-
-            spyOn( console, 'debug' ).andCallThrough(  );
-
-        });
 
         var oscillators = null;
         
@@ -90,8 +84,8 @@ describe( "SoundLib", function( ) {
             oscillators = SoundLib.createNote( SoundLib.A[4] );
             spyOn( oscillators[0], 'noteOn' );
             SoundLib.play( oscillators );
+
             expect( oscillators[0].noteOn ).toHaveBeenCalled( );
-            expect( console.debug ).toHaveBeenCalledWith( "Starting an Oscillator at frequency: 440" );
             
         });
         
@@ -100,9 +94,9 @@ describe( "SoundLib", function( ) {
             var n = oscillators[0];
             spyOn( n, 'noteOff' );
             SoundLib.stop( oscillators );
+
             expect( n.noteOff ).toHaveBeenCalled( );
             expect( oscillators.length ).toEqual( 0 );
-            expect( console.debug ).toHaveBeenCalledWith( "Stopping an Oscillator at frequency: 440" );
 
         });
         
@@ -112,8 +106,8 @@ describe( "SoundLib", function( ) {
             var n = oscillators[0];
             spyOn( n, 'noteOn' );
             SoundLib.play( oscillators );
+
             expect( n.noteOn ).toHaveBeenCalled( );
-            expect( console.debug ).toHaveBeenCalled( );
             
         });
         
@@ -122,9 +116,9 @@ describe( "SoundLib", function( ) {
             var n = oscillators[0];
             spyOn( n, 'noteOff' );
             SoundLib.stop( oscillators );
+
             expect( n.noteOff ).toHaveBeenCalled( );
             expect( oscillators.length ).toEqual( 0 );
-            expect( console.debug ).toHaveBeenCalled( );
 
         });
 
