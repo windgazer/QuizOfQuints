@@ -122,6 +122,38 @@ describe( "SoundLib", function( ) {
 
         });
 
+        
+        it ( "Should be able to play sound for 'n' milliseconds", function(  ) {
+
+            var n = null;
+
+            runs( function(  ) {
+
+                oscillators = SoundLib.createNote( SoundLib.A[4] );
+
+                n = oscillators[0];
+                spyOn( n, 'noteOn' );
+                spyOn( n, 'noteOff' );
+
+                SoundLib.play( oscillators, 1000 );
+
+            } );
+            
+            waitsFor( function(  ) {
+
+                return oscillators.length < 1;
+
+            }, "oscillators should have been reduced to 0", 1500 );
+
+            runs( function(  ) {
+
+                expect( n.noteOn ).toHaveBeenCalled( );
+                expect( n.noteOff ).toHaveBeenCalled( );
+
+            } );
+            
+        });
+
     });
 
 });

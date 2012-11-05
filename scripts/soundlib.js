@@ -117,7 +117,7 @@ var SoundLib = ( function( g ) {
      *
      * @argument [Array<Oscillators>] oscs The Oscillators.
      */
-    function play( oscs ) {
+    function play( oscs, t ) {
 
         if ( supported ) {
 
@@ -125,6 +125,16 @@ var SoundLib = ( function( g ) {
 
                 oscs[ i ].noteOn( 0 );
                 console.debug( "Starting an Oscillator at frequency: " + oscs[ i ].frequency.value );
+
+            }
+
+            if ( typeof t !== "undefined" ) {
+
+                oscs.timer = window.setTimeout( function( ){
+
+                    stop( oscs );
+
+                }, t );
 
             }
 
