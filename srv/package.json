@@ -1,0 +1,16 @@
+{
+
+  "name":"QOQServer",
+  "author": "Martin 'Windgazer' Reurings <martin@windgazer.nl>",
+  "version":"0.0.1",
+
+  "dependencies":{
+
+    "request":"",
+    "http-server":""
+
+  },
+
+  "engine": "node 0.8.12"
+
+}
