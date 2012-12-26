@@ -104,6 +104,7 @@ describe( "Commands", function( ) {
     it( "can retreive a user by email", function( ) {
         
         var email = "dino@extinct.com";
+        var retrieved = null;
 
         runs( function( ) {
             var User = require( '../User.js' );
@@ -119,15 +120,18 @@ describe( "Commands", function( ) {
         runs( function( ) {
             expect( UserDao.unlock ).toHaveBeenCalledWith( true );
             UserDao.unlock.calls.length = 0;
+            UserDao.events.on( "userRetrieved", function( args ) {
+                retrieved = args;
+            } );
             UserDao.getUserByEmail( email );
         } );
 
         waitsFor( function( ) {
-            return UserDao.unlock.calls.length > 0;
-        }, "The unlock method should have been called", timeout * 2 );
+            return retrieved !== null;
+        }, "Should have retrieved user by now :(", timeout * 2 );
 
         runs( function( ) {
-            expect( UserDao.unlock ).toHaveBeenCalledWith( true );
+            expect( retrieved ).not.toBe( null );
         } );
 
     } );

@@ -5,17 +5,34 @@
  */
 module.exports = ( function( ) {
 
-    var Config = require( '../Config.js' ), Request = require( 'request' );
+    var Config = require( '../Config.js' ), Request = require( 'request' ),
+        Events = require('events'),
+        Util = require('util');
 
     var db = Config["debug"] || process.debugEnabled ? Config["couchtdb"]
             : Config["couchdb"];
 
-    var lock = false;
+    var lock = false,
+        DAOEvents = function( ) {
+            this.userRetreived = function( b ) {
+                var results = JSON.parse( b );
+                if ( results["rows"] && results["rows"].length > 0 ) {
+                    console.log( "Sending userRetrieved event!", results["rows"] );
+                    this.emit( "userRetrieved", results["rows"][0] );
+                } else {
+                    console.log( "No User Retrieved :(" );
+                }
+            }
 
-    function updateDB( dao, method, id, doc ) {
+        };
+        
+        DAOEvents.prototype = new Events.EventEmitter();
+    
+
+    function updateDB( dao, method, id, doc, callback ) {
 
         if (lock)
-            throw "DB is locked, please try again later!";
+            throw "Connection is locked, please try again later!";
         lock = true;
 
         var attribs = {
@@ -31,7 +48,7 @@ module.exports = ( function( ) {
 
             if (!e && r.statusCode >= 200 && r.statusCode < 300) {
                 dao.unlock( true );
-                console.log( body );
+                if ( callback ) callback( body );
             } else {
                 dao.unlock( false );
                 console.error( "Failed to " + method + " database", db, e,
@@ -55,7 +72,7 @@ module.exports = ( function( ) {
             _id : "_design/users",
             views : {
                 email : {
-                    map : "function( doc ) {\n    if (doc.email) {\n        emit( doc.email, null );\n    }\n}"
+                    map : "function( doc ) {\n    if (doc.email) {\n        emit( doc.email, doc );\n    }\n}"
                 }
             }
         }
@@ -67,6 +84,23 @@ module.exports = ( function( ) {
     function addUser( dao, user ) {
 
         updateDB( dao, "PUT", user.get( "_id" ), user.toJSON()  );
+
+    }
+
+    /**
+     * /tqoq/_design/users/_view/email?key="dino@extinct.com"
+     */
+    function getUserByEmail( dao, email ) {
+
+        var id = "_design/users/_view/email?key=\""
+                + encodeURIComponent( email ) + "\"";
+        
+        function cb( b ) {
+            console.log( "Callback fired!", b );
+            dao.events.userRetreived( b );
+        }
+        
+        updateDB( dao, "GET", id, null, cb );
 
     }
 
@@ -83,9 +117,13 @@ module.exports = ( function( ) {
         addUser : function( usr ) {
             addUser( this, usr );
         },
+        getUserByEmail : function( email ) {
+            getUserByEmail( this, email );
+        },
         unlock : function( success ) {
             lock = false;
-        }
+        },
+        events: new DAOEvents()
     }
 
     return publics;
