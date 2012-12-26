@@ -1,6 +1,8 @@
 describe( "Commands", function( ) {
 
+    process.debugEnabled = true;
     var UserDao = require( '../dao/UserDao.js' );
+    var timeout = 10000;
 
     beforeEach( function( ) {
         spyOn( UserDao, 'unlock' ).andCallThrough( );
@@ -12,7 +14,7 @@ describe( "Commands", function( ) {
 
     } );
 
-    it( "can create the db", function( ) {
+    it( "can remove the db", function( ) {
 
         runs( function( ) {
             //Make sure a database exists...
@@ -21,7 +23,7 @@ describe( "Commands", function( ) {
 
         waitsFor( function( ) {
             return UserDao.unlock.calls.length > 0;
-        }, "The unlock method should have been called", 3000 );
+        }, "The unlock method should have been called", timeout );
 
         runs( function( ) {
             UserDao.unlock.calls.length = 0;
@@ -30,7 +32,7 @@ describe( "Commands", function( ) {
 
         waitsFor( function( ) {
             return UserDao.unlock.calls.length > 0;
-        }, "The unlock method should have been called", 3000 );
+        }, "The unlock method should have been called", timeout );
 
         runs( function( ) {
             expect( UserDao.unlock ).toHaveBeenCalledWith( true );
@@ -47,7 +49,7 @@ describe( "Commands", function( ) {
 
         waitsFor( function( ) {
             return UserDao.unlock.calls.length > 0;
-        }, "The unlock method should have been called", 3000 );
+        }, "The unlock method should have been called", timeout );
 
         runs( function( ) {
             UserDao.unlock.calls.length = 0;
@@ -56,7 +58,61 @@ describe( "Commands", function( ) {
 
         waitsFor( function( ) {
             return UserDao.unlock.calls.length > 0;
-        }, "The unlock method should have been called", 3000 );
+        }, "The unlock method should have been called", timeout );
+
+        runs( function( ) {
+            expect( UserDao.unlock ).toHaveBeenCalledWith( true );
+        } );
+
+    } );
+
+    it( "can add views to the db", function( ) {
+
+        runs( function( ) {
+            UserDao.createViews( );
+        } );
+
+        waitsFor( function( ) {
+            return UserDao.unlock.calls.length > 0;
+        }, "The unlock method should have been called", timeout );
+
+        runs( function( ) {
+            expect( UserDao.unlock ).toHaveBeenCalledWith( true );
+        } );
+
+    } );
+
+    it( "can add a user to the db", function( ) {
+
+        runs( function( ) {
+            var User = require( '../User.js' );
+            var user = new User( "dodo@extinct.com" );
+
+            UserDao.addUser( user );
+        } );
+
+        waitsFor( function( ) {
+            return UserDao.unlock.calls.length > 0;
+        }, "The unlock method should have been called", timeout );
+
+        runs( function( ) {
+            expect( UserDao.unlock ).toHaveBeenCalledWith( true );
+        } );
+
+    } );
+
+    it( "can retreive a user by email", function( ) {
+
+        runs( function( ) {
+            var User = require( '../User.js' );
+            var user = new User( "dino@extinct.com" );
+
+            UserDao.addUser( user );
+        } );
+
+        waitsFor( function( ) {
+            return UserDao.unlock.calls.length > 0;
+        }, "The unlock method should have been called", timeout );
 
         runs( function( ) {
             expect( UserDao.unlock ).toHaveBeenCalledWith( true );
