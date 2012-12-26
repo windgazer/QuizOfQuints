@@ -7,6 +7,7 @@ module.exports = ( function( ) {
 
     var Config = require( '../Config.js' ), Request = require( 'request' ),
         Events = require('events'),
+        User = require('../user'),
         Util = require('util');
 
     var db = Config["debug"] || process.debugEnabled ? Config["couchtdb"]
@@ -14,14 +15,9 @@ module.exports = ( function( ) {
 
     var lock = false,
         DAOEvents = function( ) {
-            this.userRetreived = function( b ) {
-                var results = JSON.parse( b );
-                if ( results["rows"] && results["rows"].length > 0 ) {
-                    console.log( "Sending userRetrieved event!", results["rows"] );
-                    this.emit( "userRetrieved", results["rows"][0] );
-                } else {
-                    console.log( "No User Retrieved :(" );
-                }
+            this.userRetreived = function( usrJSON ) {
+                console.log( "Sending userRetrieved event!", usrJSON );
+                this.emit( "userRetrieved", new User( usrJSON ) );
             }
 
         };
@@ -96,8 +92,12 @@ module.exports = ( function( ) {
                 + encodeURIComponent( email ) + "\"";
         
         function cb( b ) {
-            console.log( "Callback fired!", b );
-            dao.events.userRetreived( b );
+            var results = JSON.parse( b );
+            if ( results["rows"] && results["rows"].length > 0 ) {
+                dao.events.userRetreived( results["rows"][0].value );
+            } else {
+                console.log( "No User Retrieved :(" );
+            }
         }
         
         updateDB( dao, "GET", id, null, cb );

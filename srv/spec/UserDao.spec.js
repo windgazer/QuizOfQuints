@@ -132,6 +132,8 @@ describe( "Commands", function( ) {
 
         runs( function( ) {
             expect( retrieved ).not.toBe( null );
+            expect( retrieved.toJSON ).toBeDefined();
+            expect( retrieved.get("email") ).toEqual( email );
         } );
 
     } );
