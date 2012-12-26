@@ -38,6 +38,7 @@ module.exports = ( function() {
              * Push a new score to the database. A record of max ten scores is
              * being kept, apart from the highest ever and any score attached
              * to achievements.
+             * 
              * The arguments expected are, the score, the user id and a valid
              * hash-code.
              */
