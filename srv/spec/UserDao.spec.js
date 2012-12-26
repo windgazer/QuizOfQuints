@@ -102,10 +102,12 @@ describe( "Commands", function( ) {
     } );
 
     it( "can retreive a user by email", function( ) {
+        
+        var email = "dino@extinct.com";
 
         runs( function( ) {
             var User = require( '../User.js' );
-            var user = new User( "dino@extinct.com" );
+            var user = new User( email );
 
             UserDao.addUser( user );
         } );
@@ -113,6 +115,16 @@ describe( "Commands", function( ) {
         waitsFor( function( ) {
             return UserDao.unlock.calls.length > 0;
         }, "The unlock method should have been called", timeout );
+
+        runs( function( ) {
+            expect( UserDao.unlock ).toHaveBeenCalledWith( true );
+            UserDao.unlock.calls.length = 0;
+            UserDao.getUserByEmail( email );
+        } );
+
+        waitsFor( function( ) {
+            return UserDao.unlock.calls.length > 0;
+        }, "The unlock method should have been called", timeout * 2 );
 
         runs( function( ) {
             expect( UserDao.unlock ).toHaveBeenCalledWith( true );
