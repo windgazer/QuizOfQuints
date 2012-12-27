@@ -1,6 +1,6 @@
 describe( "Commands", function( ) {
 
-    process.debugEnabled = true;
+    process.debugEnabled = true; //Make sure tests are running on the test database...
     var UserDao = require( '../dao/UserDao.js' );
     var timeout = 10000;
 
@@ -88,7 +88,7 @@ describe( "Commands", function( ) {
             var User = require( '../User.js' );
             var user = new User( "dodo@extinct.com" );
 
-            UserDao.addUser( user );
+            UserDao.saveUser( user );
         } );
 
         waitsFor( function( ) {
@@ -110,7 +110,7 @@ describe( "Commands", function( ) {
             var User = require( '../User.js' );
             var user = new User( email );
 
-            UserDao.addUser( user );
+            UserDao.saveUser( user );
         } );
 
         waitsFor( function( ) {

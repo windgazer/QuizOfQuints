@@ -10,6 +10,8 @@ module.exports = ( function( ) {
         User = require('../user'),
         Util = require('util');
 
+    // If debug is enabled either in config or on 'process', use the test
+    // databasee
     var db = Config["debug"] || process.debugEnabled ? Config["couchtdb"]
             : Config["couchdb"];
 
@@ -22,9 +24,27 @@ module.exports = ( function( ) {
 
         };
         
-        DAOEvents.prototype = new Events.EventEmitter();
-    
+    DAOEvents.prototype = new Events.EventEmitter();
 
+    /**
+     * updateDB does a request to a couchDB. Although it's still called
+     * updateDB, it can retrieve just as well. Some of the arguments are
+     * optional, and as it is it can do pretty much anything :)
+     * 
+     * @param [object]
+     *            dao This is the instance of the DAO (even though there's only
+     *            one)
+     * @param [string]
+     *            method The method to use when processing a request ("GET",
+     *            "PUT", "DELETE", etc)
+     * @param [string]
+     *            id An optional parameter, actually more of a path
+     * @param [string]
+     *            doc The optional content of a request, for PUT requests mostly
+     * @param [function]
+     *            callback The optional callback method, mostly to handle "GET"
+     *            requests.
+     */
     function updateDB( dao, method, id, doc, callback ) {
 
         if (lock)
@@ -54,14 +74,23 @@ module.exports = ( function( ) {
         } );
     }
 
+    /**
+     * delete the database for this DAO
+     */
     function deleteDB( dao ) {
         updateDB( dao, "DELETE" );
     }
 
+    /**
+     * create the database for this DAO
+     */
     function createDB( dao ) {
         updateDB( dao, "PUT" );
     }
 
+    /**
+     * create the views required for this DAO
+     */
     function createViews( dao ) {
 
         var views = {
@@ -76,14 +105,18 @@ module.exports = ( function( ) {
         updateDB( dao, "PUT", "_design/users", JSON.stringify( views ) );
 
     }
-    
-    function addUser( dao, user ) {
+
+    /**
+     * Save a user to the couchDB
+     */
+    function saveUser( dao, user ) {
 
         updateDB( dao, "PUT", user.get( "_id" ), user.toJSON()  );
 
     }
 
     /**
+     * Get a user by email address
      * /tqoq/_design/users/_view/email?key="dino@extinct.com"
      */
     function getUserByEmail( dao, email ) {
@@ -114,8 +147,8 @@ module.exports = ( function( ) {
         createViews : function( ) {
             createViews( this );
         },
-        addUser : function( usr ) {
-            addUser( this, usr );
+        saveUser : function( usr ) {
+            saveUser( this, usr );
         },
         getUserByEmail : function( email ) {
             getUserByEmail( this, email );
