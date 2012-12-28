@@ -26,7 +26,7 @@ describe( "Commands", function( ) {
         }, "The unlock method should have been called", timeout );
 
         runs( function( ) {
-            UserDao.unlock.calls.length = 0;
+            UserDao.unlock.reset();
             UserDao.deleteDB( );
         } );
 
@@ -52,7 +52,7 @@ describe( "Commands", function( ) {
         }, "The unlock method should have been called", timeout );
 
         runs( function( ) {
-            UserDao.unlock.calls.length = 0;
+            UserDao.unlock.reset();
             UserDao.createDB( );
         } );
 
@@ -119,7 +119,7 @@ describe( "Commands", function( ) {
 
         runs( function( ) {
             expect( UserDao.unlock ).toHaveBeenCalledWith( true );
-            UserDao.unlock.calls.length = 0;
+            UserDao.unlock.reset();
             UserDao.events.on( "userRetrieved", function( args ) {
                 retrieved = args;
             } );
@@ -134,6 +134,51 @@ describe( "Commands", function( ) {
             expect( retrieved ).not.toBe( null );
             expect( retrieved.toJSON ).toBeDefined();
             expect( retrieved.get("email") ).toEqual( email );
+        } );
+
+    } );
+
+    it( "can delete a user", function( ) {
+        
+        var email = "velociraptor@extinct.com";
+        var retrieved = null;
+
+        runs( function( ) {
+            var User = require( '../User.js' );
+            var user = new User( email );
+
+            UserDao.saveUser( user );
+        } );
+
+        waitsFor( function( ) {
+            return UserDao.unlock.calls.length > 0;
+        }, "The unlock method should have been called", timeout );
+
+        runs( function( ) {
+            expect( UserDao.unlock ).toHaveBeenCalledWith( true );
+            UserDao.events.on( "userRetrieved", function( args ) {
+                retrieved = args;
+            } );
+            UserDao.getUserByEmail( email );
+        } );
+
+        waitsFor( function( ) {
+            return retrieved !== null;
+        }, "Should have retrieved user by now :(", timeout * 2 );
+
+        runs( function( ) {
+            expect( retrieved.get("email") ).toEqual( email );
+
+            UserDao.unlock.reset();
+            UserDao.deleteUser( retrieved );
+        } );
+
+        waitsFor( function( ) {
+            return UserDao.unlock.calls.length > 0;
+        }, "The unlock method should have been called", timeout );
+
+        runs( function( ) {
+            expect( UserDao.unlock ).toHaveBeenCalledWith( true );
         } );
 
     } );

@@ -137,6 +137,14 @@ module.exports = ( function( ) {
 
     }
 
+    function deleteUser( dao, user ) {
+
+        var id = user.get("_id") + "?rev=" + user.get("_rev");
+
+        updateDB( dao, "DELETE", id );
+
+    }
+
     var publics = {
         deleteDB : function( ) {
             deleteDB( this );
@@ -149,6 +157,9 @@ module.exports = ( function( ) {
         },
         saveUser : function( usr ) {
             saveUser( this, usr );
+        },
+        deleteUser : function( usr ) {
+            deleteUser( this, usr );
         },
         getUserByEmail : function( email ) {
             getUserByEmail( this, email );
