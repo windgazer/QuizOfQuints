@@ -1,0 +1,3 @@
+[submodule "scripts/lib.a5s"]
+	path = scripts/lib.a5s
+	url = git@github.com:windgazer/app5upport.git
