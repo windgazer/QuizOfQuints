@@ -15,6 +15,31 @@ describe("CircleGame", function() {
         expect( g ).toBeDefined();
 
     });
+    
+    it("can render a game-field", function() {
+
+        var g = new CircleGame( fakeDom );
+        
+        waitsFor(function() {
+
+            return g.getTemplate() !== null;
+
+        }, "The template should be available", 1500);
+
+        runs( function() {
+
+            var t = g.getTemplate();
+
+            expect( typeof t ).toBe("string");
+            expect( t.indexOf(" circlegame ") > 0 ).toBe( true );
+            
+            g.renderGame();
+            
+            expect( fakeDom.innerHtml ).toBe( t );
+
+        });
+
+    });
 
 
 })();

@@ -9,7 +9,8 @@ var CircleGame = (function() {
     ClassTemplate.loadTemplate( templateName );
     
     function getTemplate() {
-        if ( template = null ) {
+        if ( template == null ) {
+            console.error("Gettin template")
             template = ClassTemplate.getTemplate( templateName );
         }
         
