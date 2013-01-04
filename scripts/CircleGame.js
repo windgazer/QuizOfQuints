@@ -16,7 +16,14 @@ var CircleGame = (function() {
         
         return template;
     }
-    
+
+    /**
+     * Target can be either a node or a query, in the latter case it will be
+     * resolved to a node using document.querySelector( target ).
+     * 
+     * @param target
+     *            {string/node} Required for the game to be able to render.
+     */
     function init( target ) {
         
         if (  typeof target === "string" ) {
