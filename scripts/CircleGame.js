@@ -25,18 +25,30 @@ var CircleGame = (function() {
      *            {string/node} Required for the game to be able to render.
      */
     function init( target ) {
-        
+
         if (  typeof target === "string" ) {
             this.target = document.querySelector( target );
         } else {
             this.target = target;
         }
-        
+
     }
-    
+
+    function renderGame( game ) {
+
+        game.target.innerHtml = game.getTemplate();
+
+    }
+
     init.prototype = {
 
-            getTemplate: getTemplate
+            getTemplate: getTemplate,
+
+            renderGame: function(  ) {
+
+                return renderGame( this );
+
+            }
 
     }
 
