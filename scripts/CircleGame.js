@@ -10,7 +10,6 @@ var CircleGame = (function() {
     
     function getTemplate() {
         if ( template == null ) {
-            console.error("Gettin template")
             template = ClassTemplate.getTemplate( templateName );
         }
         
@@ -36,7 +35,7 @@ var CircleGame = (function() {
 
     function renderGame( game ) {
 
-        game.target.innerHtml = game.getTemplate();
+        game.target.innerHTML = game.getTemplate();
 
     }
 

@@ -35,7 +35,7 @@ describe("CircleGame", function() {
             
             g.renderGame();
             
-            expect( fakeDom.innerHtml ).toBe( t );
+            expect( fakeDom.innerHTML ).toBe( t );
 
         });
 
