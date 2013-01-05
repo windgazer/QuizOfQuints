@@ -18,12 +18,22 @@
 		&copy;2013 Windgazer
 	</section></footer>
 
-	<script src="scripts/customevents.js"></script>
+	<script src="scripts/lib.a5s/CustomEvents.js"></script>
 	<script src="scripts/events-2.0.js"></script>
 	<script src="scripts/linklistener.js"></script>
 	<script src="scripts/interval.js"></script>
-	<script src="scripts/CircleUI.js"></script>
-	<script src="scripts/Score.js"></script>
+	<script src="scripts/lib.a5s/HttpRequest.js"></script>
+	<script src="scripts/lib.a5s/ClassTemplate.js"></script>
+	<script src="scripts/CircleGame.js"></script>
+	<script>
+    	(function() {
+    	    ce.attachEvent("template.finished", function() {
+    	        g.renderGame();
+    	    })
+    	    
+    	    var g = new CircleGame( "#content" );
+    	})();
+	</script>
 
 </body>
 </html>
