@@ -8,11 +8,13 @@ describe("CircleGame", function() {
 
     });
     
-    it("Can be instantiated", function() {
+    it("Will throw exception if no target node specified", function() {
 
-        var g = new CircleGame();
+        function throwingUp() {
+            var g = new CircleGame();
+        }
         
-        expect( g ).toBeDefined();
+        expect( throwingUp ).toThrow();
 
     });
     
@@ -33,9 +35,7 @@ describe("CircleGame", function() {
             expect( typeof t ).toBe("string");
             expect( t.indexOf(" circlegame ") > 0 ).toBe( true );
             
-            g.renderGame();
-            
-            expect( fakeDom.innerHTML ).toBe( t );
+            expect( fakeDom.innerHTML.length > 20 ).toBe( true );
 
         });
 
