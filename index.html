@@ -5,6 +5,18 @@
 	<title>Quiz Of Quints</title>
 	<link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
 	<link type="text/css" rel="stylesheet" href="style/layout.css" >
+
+	<script src="scripts/lib.a5s/CustomEvents.js"></script>
+	<script src="scripts/events-2.0.js"></script>
+	<script src="scripts/linklistener.js"></script>
+	<script src="scripts/Global.js"></script>
+	<script src="scripts/interval.js"></script>
+	<script src="scripts/lib.a5s/HttpRequest.js"></script>
+	<script src="scripts/lib.a5s/ClassTemplate.js"></script>
+
+	<script src="scripts/CircleGame.js"></script>
+	<script src="scripts/Score.js"></script>
+
 </head>
 <body>
 
@@ -12,26 +24,17 @@
 		<h1>Quiz Of Quints</h1>
 	</section></header>
 
+	<section id="score"></section>
 	<section id="content"></section>
 
 	<footer><section>
 		&copy;2013 Windgazer
 	</section></footer>
 
-	<script src="scripts/lib.a5s/CustomEvents.js"></script>
-	<script src="scripts/events-2.0.js"></script>
-	<script src="scripts/linklistener.js"></script>
-	<script src="scripts/interval.js"></script>
-	<script src="scripts/lib.a5s/HttpRequest.js"></script>
-	<script src="scripts/lib.a5s/ClassTemplate.js"></script>
-	<script src="scripts/CircleGame.js"></script>
 	<script>
     	(function() {
-    	    ce.attachEvent("template.finished", function() {
-    	        g.renderGame();
-    	    })
-    	    
     	    var g = new CircleGame( "#content" );
+    	    var s = new Score( "#score" );
     	})();
 	</script>
 
