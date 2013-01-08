@@ -8,7 +8,7 @@ var CircleUI = (function() {
 		
 	function setRandomPosition() {
 
-		pos = Math.round( Math.random() * 11 ) + 1,
+		pos = Math.round( Math.random() * 11 ) + 1;
 		ko = Interval.getKeyObjectByPos( pos );
 
 	}
@@ -16,7 +16,7 @@ var CircleUI = (function() {
 	function setElementValue( e, v ) {
 
 		var cv = e.firstChild;
-		
+
 		if ( cv ) {
 			e.removeChild( cv );
 		} 
