@@ -61,7 +61,7 @@ var CircleGame = (function() {
     function setRandomPosition() {
 
         pos = Math.round( Math.random() * 11 ) + 1;
-        ko = Interval.getKeyObjectByPos( pos );
+        ko = Interval.getKeyObjectByPos( pos )[ 0 ];
 
     }
 
@@ -131,7 +131,7 @@ var CircleGame = (function() {
         } else {
 
             g.className += " incorrect";
-            setCorrection( game, ko.value );
+            setCorrection( game, ko.sig );
             ce.fireEvent( SCORE_FAIL, { pos:pos, actual: ko } );
 
         }
