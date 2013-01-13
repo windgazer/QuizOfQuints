@@ -102,7 +102,7 @@ var Interval = (function() {
     function createStyleSheets() {
 
 	var i = 1, str = '',
-	    l1 = 'key', l2 = 'minor';
+	    l1 = 'sig', l2 = 'minor';
 
 	for ( ; i < 13; i++ ) {
 
