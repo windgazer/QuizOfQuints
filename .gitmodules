@@ -1,9 +1,9 @@
 [submodule "scripts/lib.a5s"]
 	path = scripts/lib.a5s
-	url = git@github.com:windgazer/app5upport.git
+	url = git://github.com/windgazer/app5upport.git
 [submodule "test/jasmine"]
 	path = test/jasmine
-	url = git@github.com:pivotal/jasmine.git
+	url = git://github.com/pivotal/jasmine.git
 [submodule "test/jasmine-jstd-adapter"]
 	path = test/jasmine-jstd-adapter
-	url = git@github.com:ibolmo/jasmine-jstd-adapter.git
+	url = git://github.com/ibolmo/jasmine-jstd-adapter.git
