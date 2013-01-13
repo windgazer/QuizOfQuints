@@ -59,6 +59,10 @@ var LinkListener = {
 	 */
 	addHandler:function(id, handler) {
 		this.handles[id] = handler;
+		return { id:id, handler:handler };
+	},
+	removeHandler: function( wrapper ) {
+	    if ( this.handles[wrapper.id] ) delete this.handles[wrapper.id];
 	}
 };
 

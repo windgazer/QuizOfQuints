@@ -18,7 +18,7 @@ var CircleUI = (function() {
 	function setElementValue( e, v ) {
 
 		var cv = e.firstChild;
-		
+
 		if ( cv ) {
 			e.removeChild( cv );
 		} 

@@ -5,44 +5,38 @@
 	<title>Quiz Of Quints</title>
 	<link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
 	<link type="text/css" rel="stylesheet" href="style/layout.css" >
+
+	<script src="scripts/lib.a5s/CustomEvents.js"></script>
+	<script src="scripts/events-2.0.js"></script>
+	<script src="scripts/linklistener.js"></script>
+	<script src="scripts/Global.js"></script>
+	<script src="scripts/interval.js"></script>
+	<script src="scripts/lib.a5s/HttpRequest.js"></script>
+	<script src="scripts/lib.a5s/ClassTemplate.js"></script>
+
+	<script src="scripts/CircleGame.js"></script>
+	<script src="scripts/Score.js"></script>
+
 </head>
 <body>
 
-	<h1>Quiz Of Quints</h1>
+	<header><section>
+		<h1>Quiz Of Quints</h1>
+	</section></header>
 
-	<article class="fresh">
-	
-		<div id="score" class="score">0</div>
-	
-		<ul class="majorMinor">
-			<li id="mark1" class="pos1"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark2" class="pos2"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark3" class="pos3"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark4" class="pos4"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark5" class="pos5"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark6" class="pos6"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark7" class="pos7"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark8" class="pos8"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark9" class="pos9"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark10" class="pos10"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark11" class="pos11"><a href="#answer" rel="hotspot">Click Here</a></li>
-			<li id="mark12" class="pos12"><a href="#answer" rel="hotspot">Click Here</a></li>
-		</ul>
-		
-		<div id="question"></div>
-		
-		<div id="answer"></div>
+	<section id="score"></section>
+	<section id="content"></section>
 
-		<div id="correction"></div>
+	<footer><section>
+		&copy;2013 Windgazer
+	</section></footer>
 
-	</article>
-	
-	<script src="scripts/customevents.js"></script>
-	<script src="scripts/events-2.0.js"></script>
-	<script src="scripts/linklistener.js"></script>
-	<script src="scripts/interval.js"></script>
-	<script src="scripts/CircleUI.js"></script>
-	<script src="scripts/Score.js"></script>
+	<script>
+    	(function() {
+    	    var g = new CircleGame( "#content" );
+    	    var s = new Score( "#score" );
+    	})();
+	</script>
 
 </body>
 </html>
