@@ -14,7 +14,6 @@
         "Chrome"
     ],
     "launch_in_ci": [
-        "JasmineNode",
         "PhantomJS",
         "CSSLint"
     ],
