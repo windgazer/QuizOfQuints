@@ -1,0 +1,28 @@
+{
+
+  "name":"QuizOfQuints",
+  "author": "Martin 'Windgazer' Reurings <martin@windgazer.nl>",
+  "version":"0.0.1",
+
+  "dependencies":{
+
+    "request":"",
+    "http-server":""
+
+  },
+
+  "devDependencies":{
+
+    "jasmine-node":"",
+    "testem":"",
+    "csslint":""
+
+  },
+
+  "engine": "node 0.8.12",
+
+    "scripts":{
+        "test":"testem ci -T 10"
+    }
+
+}
