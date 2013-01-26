@@ -21,8 +21,11 @@ describe("CircleGame", function() {
     it("can render a game-field", function() {
 
         var g = new CircleGame( fakeDom );
+        //This proofs to be a dangerous hack, if attempted before creating the CircleGame
+        //it causes some infinity loop I haven't been able to pinpoint yet...
+    	ClassTemplate.addTemplate("CircleGame","<article id=\"${id}\" class=\"game circlegame fresh\"></article>");
         
-        waitsFor(function() {
+        waitsFor( function() {
 
             return g.getTemplate() !== null;
 
@@ -40,6 +43,5 @@ describe("CircleGame", function() {
         });
 
     });
-
 
 })();
