@@ -1,0 +1,28 @@
+{
+    "launchers": {
+        "JasmineNode": {
+            "command": "jasmine-node srv/spec"
+        },
+        "CSSLint": {
+            "command": "csslint style"
+        }
+    },
+    "launch_in_dev": [
+        "JasmineNode",
+        "PhantomJS",
+        "CSSLint",
+        "Chrome"
+    ],
+    "src_files": [
+        "scripts/lib.a5s/*.js",
+        "scripts/events-2.0.js",
+        "scripts/linklistener.js",
+        "scripts/interval.js",
+        "scripts/**/*.js",
+        "test/spec/**/*.js"
+    ],
+    "watch_files": [
+        "**/*.css",
+        "**/*.js"
+    ]
+}
