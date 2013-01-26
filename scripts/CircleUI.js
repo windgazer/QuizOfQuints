@@ -8,15 +8,17 @@ var CircleUI = (function() {
 		
 	function setRandomPosition() {
 
-		pos = Math.round( Math.random() * 11 ) + 1,
-		ko = Interval.getKeyObjectByPos( pos );
+		var npos = pos;
+		while ( npos === pos ) npos = Math.round( Math.random() * 11 ) + 1;
+		pos = npos;
+		ko = Interval.getKeyObjectByPos( pos )[ 0 ];
 
 	}
 	
 	function setElementValue( e, v ) {
 
 		var cv = e.firstChild;
-		
+
 		if ( cv ) {
 			e.removeChild( cv );
 		} 
@@ -61,7 +63,7 @@ var CircleUI = (function() {
 	LinkListener.addHandler( "hotspot", function( a ) {
 
 		var lpos = a.parentNode.id.replace( /^.*?([0-9]+)$/, "$1" ),
-			lko = Interval.getKeyObjectByPos( lpos );
+			lko = Interval.getKeyObjectByPos( lpos )[ 0 ];
 		
 		clearCorrect( a );
 		
@@ -74,7 +76,7 @@ var CircleUI = (function() {
 		} else {
 
 			art.className = "incorrect";
-			setCorrection(  ko.value );
+			setCorrection(  ko.sig );
 			ce.fireEvent( SCORE_FAIL, { pos:pos, actual: ko } );
 
 		}
@@ -94,4 +96,4 @@ var CircleUI = (function() {
 	setRandomPosition();
 	reDraw();
 	
-})();
+});
