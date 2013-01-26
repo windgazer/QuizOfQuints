@@ -96,4 +96,4 @@ var CircleUI = (function() {
 	setRandomPosition();
 	reDraw();
 	
-})();
+});
