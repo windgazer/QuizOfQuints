@@ -13,6 +13,11 @@
         "CSSLint",
         "Chrome"
     ],
+    "launch_in_ci": [
+        "JasmineNode",
+        "PhantomJS",
+        "CSSLint"
+    ],
     "src_files": [
         "scripts/lib.a5s/*.js",
         "scripts/events-2.0.js",

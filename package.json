@@ -19,6 +19,10 @@
 
   },
 
-  "engine": "node 0.8.12"
+  "engine": "node 0.8.12",
+
+    "scripts":{
+        "test":"testem ci -T 10"
+    }
 
 }
