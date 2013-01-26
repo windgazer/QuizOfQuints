@@ -1,6 +1,8 @@
 QuizOfQuints
 ============
 
+[![Build Status](https://travis-ci.org/windgazer/QuizOfQuints.png?branch=master)](https://travis-ci.org/windgazer/QuizOfQuints)
+
 Learning music theory through quizzes, starting with a basic circle of quints. The start of this game is to allow a student to play a 'guessing game' to improve knowledge of musical keys.
 
 I hope to be adding such things as 'achievements' and 'quests', since this is a strong encouragement factor in 'gamification'. However this would require me to start running a server, and more importantly a database. If overly succcessful, this will cost money...
